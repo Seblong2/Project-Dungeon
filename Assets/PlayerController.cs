@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     public float rateOfAttack;
     private float _resetAttack = 0;
     // [SerializeField] private Weapon _playerCombat;
-   // [SerializeField] private Weapon _playerCombat;
+    [SerializeField] private Sword _playerCombat;
     public float speedMultiplyer;
 
     public bool sprinting = false;
@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         characterController = new CharacterController();
-        //_playerCombat = this.GetComponent<Weapon>();
+       // _playerCombat = this.GetComponent<Sword>();
     }
 
     private void OnEnable()
@@ -151,7 +151,7 @@ public class PlayerController : MonoBehaviour
         if (Time.time >= _resetAttack)
         {
 
-            //_playerCombat.Attack();
+            _playerCombat.Attack();
             _resetAttack = Time.time + 1f / rateOfAttack;
         }
 
