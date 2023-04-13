@@ -149,6 +149,7 @@ GameObject:
   - component: {fileID: 7449722359287327916}
   - component: {fileID: 8893394519450490755}
   - component: {fileID: 8893394519450490752}
+  - component: {fileID: 5002379056121714128}
   m_Layer: 0
   m_Name: Mesh-Knight-Weapon
   m_TagString: Untagged
@@ -342,6 +343,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5002379056121714128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3357246427490804345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28092ef2e0f9840eeb019f6d92e65b09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weaponAnimation: {fileID: 8893394519738000688}
+  damage: 20
+  _swordSlash: {fileID: 0}
+  _audioSource: {fileID: 0}
+  attackPoint: {fileID: 8893394518734932786}
+  weaponRange: 0.36
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &8427706765685885694
 GameObject:
   m_ObjectHideFlags: 0
@@ -2227,6 +2249,8 @@ GameObject:
   - component: {fileID: 8893394520598900171}
   - component: {fileID: 8893394520598900168}
   - component: {fileID: 8893394520598900170}
+  - component: {fileID: 2624796223003208673}
+  - component: {fileID: 2003453060193353044}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2265,10 +2289,10 @@ Animator:
   m_GameObject: {fileID: 8893394519747385174}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 417a287abb2cab94889f1f1ddd91f928, type: 3}
-  m_Controller: {fileID: 9100000, guid: 8af707e96a36d4706b82641dde1507a3, type: 2}
+  m_Controller: {fileID: 9100000, guid: b1a47d2cb7211479ca478ff0220622aa, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -2332,12 +2356,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8893394519747385174}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 5b82d6f3e1c8b47cba55d0b70bf36b1e, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: 3f33a613cb99a4d9d961292689654e7b, type: 3}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -2352,7 +2376,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2624796223003208673}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnMove
         m_Mode: 0
@@ -2364,11 +2388,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: b7868cc8-d487-4a25-a646-d71a075557ae
-    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+    m_ActionId: 423ac189-9360-48f0-a20e-34e10fc3a5b5
+    m_ActionName: Player/Move[/XboxOneGampadMacOSWireless/leftStick,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2624796223003208673}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: OnLook
         m_Mode: 0
@@ -2380,37 +2404,75 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 5079fdab-731d-4615-a0d6-8714a928eabc
-    m_ActionName: Player/Look[/Mouse/delta,/Pen/delta]
+    m_ActionId: 273e5ab1-dd96-4e80-b661-c30a5af554fd
+    m_ActionName: Player/Look[/XboxOneGampadMacOSWireless/rightStick,/Mouse/delta,/Pen/delta]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: ac6d7725-7acd-4b68-a5a8-21bcf0808764
-    m_ActionName: Player/Attack[/Mouse/leftButton]
+    m_ActionId: 7a36f58a-1bee-4fdd-91ca-b0a09ddf63d8
+    m_ActionName: Player/Attack[/Mouse/leftButton,/XboxOneGampadMacOSWireless/rightTrigger]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: dc578b46-b647-4db6-85ce-5dff24f5b99f
-    m_ActionName: Player/Jump[/Keyboard/space]
+    m_ActionId: b5d404b7-2e58-4dc6-a04b-59c8eff23e6a
+    m_ActionName: Player/Jump[/XboxOneGampadMacOSWireless/buttonSouth,/Keyboard/space]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 0a8b97fa-3936-4d9e-a9bd-e5c0aeae7c69
-    m_ActionName: Player/Pause[/Keyboard/escape]
+    m_ActionId: 1b767247-6e24-4155-865d-e91a63dee7d5
+    m_ActionName: Player/Pause[/XboxOneGampadMacOSWireless/start,/Keyboard/escape]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: d64b8b46-8f6b-4a26-813a-a28cac446793
-    m_ActionName: Player/Interact[/Keyboard/e]
+    m_ActionId: f8db86a5-fe11-4ec7-ade9-5ed59bae89e5
+    m_ActionName: Player/Interact[/XboxOneGampadMacOSWireless/buttonWest,/Keyboard/e]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 19eb7860-8cef-489d-a9bc-d48efebcb917
-    m_ActionName: Player/CameraLock
+    m_ActionId: eb6715e7-b56b-4c53-a707-9d044f1f7524
+    m_ActionName: Player/CameraLock[/XboxOneGampadMacOSWireless/rightShoulder]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 60f00ec6-804a-41f4-96fe-53919f52c8b5
+    m_ActionId: 01ce3f7c-c8c4-425e-a1a6-c58acc290215
     m_ActionName: Player/Sprint[/XboxOneGampadMacOSWireless/leftStickPress]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &2624796223003208673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8893394519747385174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cffa74ab1b16e41cc974e861fa5492e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 8893394520598900171}
+  cameraHolder: {fileID: 8893394519430978410}
+  speed: 2.5
+  sensitivity: 0.5
+  _jumpForce: 6
+  _groundCheck: 0
+  _rayCheck: 0
+  rateOfAttack: 2
+  _playerCombat: {fileID: 5002379056121714128}
+  speedMultiplyer: 2
+  sprinting: 0
+  canDoubleJump: 0
+  speedBoost: 0
+  bonusSpeed: 1
+--- !u!114 &2003453060193353044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8893394519747385174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3495be7ca726c4654be05c682f9d831b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8893394519747385178
 GameObject:
   m_ObjectHideFlags: 0
@@ -2426,7 +2488,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8893394519747545786
 Transform:
   m_ObjectHideFlags: 0
