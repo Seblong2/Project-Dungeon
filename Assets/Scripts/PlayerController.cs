@@ -37,7 +37,6 @@ public class PlayerController : MonoBehaviour
     public bool speedBoost = false;
     public float bonusSpeed;
 
-
     public void OnMove(InputAction.CallbackContext context)
     {
         _move = context.ReadValue<Vector2>();
