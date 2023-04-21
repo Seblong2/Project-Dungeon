@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour
     public bool speedBoost = false;
     public float bonusSpeed;
 
+    private Quaternion direction;
+
     public void OnMove(InputAction.CallbackContext context)
     {
         _move = context.ReadValue<Vector2>();
@@ -81,10 +83,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        transform.Rotate(Vector3.up * _look.x * sensitivity);
-        _lookRotation += -_look.y * sensitivity;
-        _lookRotation = Mathf.Clamp(_lookRotation, -90, 90);
-        cameraHolder.transform.eulerAngles = new Vector3(_lookRotation, cameraHolder.transform.eulerAngles.y, cameraHolder.transform.eulerAngles.z);
+        direction = GameObject.Find("Cameraprop").GetComponent<Thecamera>().direction;
+        transform.rotation = direction; //Vector3.up * _look.x * sensitivity);
+        //_lookRotation += -_look.y * sensitivity;
+        //_lookRotation = Mathf.Clamp(_lookRotation, -90, 90);
+        //cameraHolder.transform.eulerAngles = new Vector3(_lookRotation, cameraHolder.transform.eulerAngles.y, cameraHolder.transform.eulerAngles.z);
 
     }
 
