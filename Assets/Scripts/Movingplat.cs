@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Movingplat : MonoBehaviour
 {
+    public bool begun;
+    
     public float fb;
     public float speed;
     public Vector3 velocity;
@@ -37,21 +39,26 @@ public class Movingplat : MonoBehaviour
             to = stopoffs[0];
             stopnum = 0;
         }
+        begun = false;
     }
 
     
     void FixedUpdate()
     {
-        if (!multipoint)
+        if (begun)
         {
-            Twopoints();
+            if (!multipoint)
+            {
+                Twopoints();
+            }
+            else
+            {
+                Morepoints();
+            }
+
+            velocity = (transform.position - previous) / Time.deltaTime;
+            previous = transform.position;
         }
-        else
-        {
-            Morepoints();
-        }
-        velocity = (transform.position - previous) / Time.deltaTime;
-        previous = transform.position;
     }
 
     void Twopoints()
@@ -120,6 +127,7 @@ public class Movingplat : MonoBehaviour
                     to = start;
                     stopnum = 0;
                     fb = 0.03f;
+                    begun = false;
                 }
                 else
                 { to = stopoffs[stopnum]; }
