@@ -39,7 +39,7 @@ public class Movingplat : MonoBehaviour
             to = stopoffs[0];
             stopnum = 0;
         }
-        begun = true;
+        begun = false;
     }
 
     
