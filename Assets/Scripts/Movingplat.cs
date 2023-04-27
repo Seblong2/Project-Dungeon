@@ -6,8 +6,9 @@ public class Movingplat : MonoBehaviour
 {
     public float fb;
     public float speed;
+    public Vector3 velocity;
+    private Vector3 previous;
 
-    
     public Vector3 start;
     public Vector3 end;
     public bool multipoint;
@@ -49,6 +50,8 @@ public class Movingplat : MonoBehaviour
         {
             Morepoints();
         }
+        velocity = (transform.position - previous) / Time.deltaTime;
+        previous = transform.position;
     }
 
     void Twopoints()
