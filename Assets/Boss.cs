@@ -9,6 +9,8 @@ public class Boss : MonoBehaviour
     [SerializeField] private Image healtbar;
     [SerializeField] private Camera cam;
 
+    public GameObject sap;
+    
     public float enemyHealth;
     private float maxHealth;
 
@@ -30,6 +32,11 @@ public class Boss : MonoBehaviour
         }
 
         healtbar.transform.rotation = Quaternion.LookRotation(transform.position - cam.transform.position);
+    }
+
+    private void Shoot()
+    {
+        GameObject Sap = Instantiate(sap, transform.position, transform.rotation);
     }
 
     public void TakeDamage(int damage)
