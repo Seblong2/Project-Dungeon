@@ -14,6 +14,9 @@ public class MovingPlatform : MonoBehaviour
     private float _timeToStop;
     private float _elapsed;
 
+    public Vector3 velocity;
+    private Vector3 previous;
+
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +39,9 @@ public class MovingPlatform : MonoBehaviour
             TargetWaypoint();
         }
 
+        velocity = (transform.position - previous) / Time.deltaTime;
+        previous = transform.position;
+        
     }
 
     private void OnTriggerEnter(Collider other)

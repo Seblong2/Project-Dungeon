@@ -27,13 +27,11 @@ public class Gelcube : MonoBehaviour
     private BoxCollider attack;
 
     private Rigidbody rb;
-    private NavMeshAgent agent;
 
     public GameObject cargo;
 
     void Awake()
     {
-        agent = GetComponent<NavMeshAgent>();
         attack = transform.GetChild(1).GetComponent<BoxCollider>();
         direction = new Quaternion(0, 0, 0, 0);
         iframes = 1;
@@ -51,13 +49,7 @@ public class Gelcube : MonoBehaviour
                 gameObject.GetComponent<MeshRenderer>().material = basemat;
             }
         }
-
-        if (!aggro)
-        {
-            Patrol();
-            //Hop();
-        }
-        else
+        if (aggro)
         {
             transform.LookAt(target.transform.position);
             transform.eulerAngles = new Vector3(0, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
@@ -83,24 +75,17 @@ public class Gelcube : MonoBehaviour
         rb.velocity += direction * speed;
     }
 
-    void Patrol()
-    {
-        agent.destination = destination;
-    }
-
     public void Chase(GameObject victim, bool hunt)
     {
         if (hunt)
         {
             target = victim;
             aggro = true;
-            agent.enabled = false;
             falling = false;
         }
         else
         {
             aggro = false;
-            agent.enabled = true;
             falling = false;
         }
     }
