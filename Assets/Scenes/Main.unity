@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -878,6 +878,11 @@ Camera:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5072748507857475532, guid: 341dc2ad27086864d915ec44a72cd3ae, type: 3}
   m_PrefabInstance: {fileID: 1610781538}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &845286938 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8893394518734932786, guid: 7fff1d7f0723e4719b60fe233c08a12b, type: 3}
+  m_PrefabInstance: {fileID: 1670779116}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &854774503
 GameObject:
@@ -2269,7 +2274,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8893394520598900170, guid: 7fff1d7f0723e4719b60fe233c08a12b, type: 3}
       propertyPath: m_ActionEvents.Array.data[0].m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8893394520598900170, guid: 7fff1d7f0723e4719b60fe233c08a12b, type: 3}
       propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.size
@@ -2401,7 +2406,7 @@ MonoBehaviour:
   damage: 15
   _swordSlash: {fileID: 0}
   _audioSource: {fileID: 0}
-  attackPoint: {fileID: 0}
+  attackPoint: {fileID: 845286938}
   weaponRange: 0.5
   enemyLayer:
     serializedVersion: 2
