@@ -9,15 +9,19 @@ public class Boss : MonoBehaviour
     [SerializeField] private Image healtbar;
     [SerializeField] private Camera cam;
 
+    public Animator animator;
+
     public GameObject sap;
     
     public float enemyHealth;
     private float maxHealth;
+    private bool active;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        active = false;
         maxHealth = enemyHealth;
         UpdateHealthBar(maxHealth, enemyHealth);
     }
@@ -25,17 +29,20 @@ public class Boss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (active)
         {
-            
-            TakeDamage(2);
-        }
+            if (Input.GetKeyDown(KeyCode.P))
+            {
 
-        healtbar.transform.rotation = Quaternion.LookRotation(transform.position - cam.transform.position);
+                TakeDamage(2);
+            }
+            healtbar.transform.rotation = Quaternion.LookRotation(transform.position - cam.transform.position);
+        }
     }
 
     private void Shoot()
     {
+        animator.SetInteger("Attack", 2);
         GameObject Sap = Instantiate(sap, transform.position, transform.rotation);
     }
 
@@ -47,8 +54,7 @@ public class Boss : MonoBehaviour
 
         if (enemyHealth <= 0)
         {
-
-            Destroy(gameObject);
+            animator.SetBool("Living", false);
         }
     }
 
@@ -57,5 +63,4 @@ public class Boss : MonoBehaviour
 
         healtbar.fillAmount = enemyHealth / maxHealth;
     }
-
 }
