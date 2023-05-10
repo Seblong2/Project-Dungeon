@@ -144,7 +144,6 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        Debug.Log("boss taking damage");
         playerHealth -= damage;
         UpdateHealthBar(maxHealth, playerHealth);
 

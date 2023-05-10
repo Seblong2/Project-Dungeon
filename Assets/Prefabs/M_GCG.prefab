@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8382423628203635111}
   - component: {fileID: 4020829489810994143}
   - component: {fileID: 8418552843074585601}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Hurting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 9197841693379035790}
   - component: {fileID: 9197841693379035776}
   - component: {fileID: 9197841693379035791}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 9197841693827639485}
   - component: {fileID: 1430576912184182371}
   - component: {fileID: 1965897056043624516}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: M_GCG
   m_TagString: Foe
   m_Icon: {fileID: 0}
@@ -283,7 +283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 7073817834245323136, guid: 5d4c13ccbbfbab74281b4ed2f8235852, type: 3}
-  scale: 77
+  scale: 76
   health: 2
   basemat: {fileID: 2100000, guid: c9fd1ba851f5cab4c869f12504588194, type: 2}
   painmat: {fileID: 2100000, guid: 7605c0c9e1e0a524cb747e0ef54502ad, type: 2}

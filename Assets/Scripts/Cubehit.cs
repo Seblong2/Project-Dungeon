@@ -15,7 +15,7 @@ public class Cubehit : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            //other.GetComponentInChildren<Playerfight>().Hurt(1);
+            other.GetComponentInChildren<PlayerController>().TakeDamage(2);
             transform.parent.GetComponent<Gelcube>().Land();
         }
     }
