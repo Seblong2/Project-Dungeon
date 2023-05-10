@@ -94,11 +94,7 @@ public class PlayerController : MonoBehaviour
         direction = GameObject.Find("Cameraprop").GetComponent<Thecamera>().direction;
         transform.rotation = direction;
 
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            Debug.Log("taking damage");
-            TakeDamage(2);
-        }
+       
 
         if (iframes > 0)
         {
