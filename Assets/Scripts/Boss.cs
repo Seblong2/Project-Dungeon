@@ -33,11 +33,11 @@ public class Boss : MonoBehaviour
     {
         if (counter > 1000)
         {
-            Debug.Log("fdgthjkuilhbgvftjyuiolijuhygtdr");
-            Shoot();
+            Kick();
             counter = 0;
         }
         counter += 1;
+        Debug.Log(counter);
         if (active)
         {
             if (Input.GetKeyDown(KeyCode.P))
@@ -54,6 +54,11 @@ public class Boss : MonoBehaviour
         animator.SetInteger("Attack", 2);
         Vector3 shootspot = transform.position + new Vector3(0, 3, 1);
         GameObject Sap = Instantiate(sap, shootspot, transform.rotation);
+    }
+
+    private void Kick()
+    {
+        animator.SetInteger("Attack", 1);
     }
 
     public void TakeDamage(int damage)

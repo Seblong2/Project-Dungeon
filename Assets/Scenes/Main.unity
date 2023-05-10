@@ -540,7 +540,7 @@ GameObject:
   - component: {fileID: 364484392}
   - component: {fileID: 364484391}
   m_Layer: 0
-  m_Name: checkpoint
+  m_Name: checkpoint (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -576,7 +576,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -706,15 +706,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 577703507}
-  m_LocalRotation: {x: 0.15486257, y: 0.13076292, z: 0.020684127, w: 0.9790255}
-  m_LocalPosition: {x: -3.34, y: 3.67, z: -7.07}
+  m_LocalRotation: {x: 0.15063101, y: 0, z: 0, w: 0.98859006}
+  m_LocalPosition: {x: -0.008, y: 3.85, z: -5.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 823308499}
   m_Father: {fileID: 944718705}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 17.327, y: 15.957, z: 4.867}
+  m_LocalEulerAnglesHint: {x: 17.327, y: 0, z: 0}
 --- !u!1 &602539794 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6727223210715188975, guid: 384766996988d864eb7d6878e2df350a, type: 3}
@@ -1102,7 +1102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healtbar: {fileID: 1606500853}
   cam: {fileID: 0}
-  animator: {fileID: 0}
+  animator: {fileID: 865367190}
   sap: {fileID: 7180559025270154081, guid: 1190bb10f980e9a41a72b9e3a0cd4f63, type: 3}
   enemyHealth: 16
   active: 0
@@ -1126,6 +1126,27 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!65 &865367192
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 602539794}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.4662366, y: 2.2364922, z: 2.2606049}
+  m_Center: {x: -0.3835194, y: 1.1277409, z: 1.4623413}
 --- !u!1 &869186300
 GameObject:
   m_ObjectHideFlags: 0
@@ -1215,7 +1236,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6201515453815280725, guid: 384766996988d864eb7d6878e2df350a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -168.54
+      value: -168.53
       objectReference: {fileID: 0}
     - target: {fileID: 6201515453815280725, guid: 384766996988d864eb7d6878e2df350a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1263,6 +1284,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6727223210715188975, guid: 384766996988d864eb7d6878e2df350a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 865367190}
+    - targetCorrespondingSourceObject: {fileID: 6727223210715188975, guid: 384766996988d864eb7d6878e2df350a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 865367192}
   m_SourcePrefab: {fileID: 100100000, guid: 384766996988d864eb7d6878e2df350a, type: 3}
 --- !u!1 &929179950
 GameObject:
@@ -2480,7 +2504,7 @@ GameObject:
   - component: {fileID: 1698262749}
   - component: {fileID: 1698262748}
   m_Layer: 0
-  m_Name: checkpoint (1)
+  m_Name: checkpoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2516,7 +2540,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -2721,7 +2745,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -2767,8 +2791,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 364484390}
   - {fileID: 1698262747}
+  - {fileID: 364484390}
   - {fileID: 1842438390}
   - {fileID: 1781173744}
   - {fileID: 1286379369}
