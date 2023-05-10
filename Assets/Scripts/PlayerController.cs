@@ -94,8 +94,6 @@ public class PlayerController : MonoBehaviour
         direction = GameObject.Find("Cameraprop").GetComponent<Thecamera>().direction;
         transform.rotation = direction;
 
-       
-
         if (iframes > 0)
         {
             iframes -= Time.deltaTime;
@@ -159,7 +157,7 @@ public class PlayerController : MonoBehaviour
                 Death();
             }
             iframes = 1.5f;
-            gameObject.GetComponentInChildren<Knightskin>().Fade(false);
+            //gameObject.GetComponentInChildren<Knightskin>().Fade(false);
         }
     }
 

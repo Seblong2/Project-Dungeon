@@ -94,8 +94,6 @@ public class Boss : MonoBehaviour
 
     private void Fire()
     {
-
-        Walk();
         if (Time.time >= nextFireTime)
         {
             // Calculate the direction of the projectile towards the player

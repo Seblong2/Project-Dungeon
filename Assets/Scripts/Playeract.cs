@@ -8,6 +8,7 @@ public class Playeract : MonoBehaviour
 {
     public InputAction use;
     private PlayerController body;
+    private Combat blade;
     private Uiscript inv;
 
     private ParticleSystem[] auras = new ParticleSystem[5];
@@ -21,6 +22,7 @@ public class Playeract : MonoBehaviour
         use.Enable();
         inv = GameObject.Find("Canvas").GetComponent<Uiscript>();
         body = gameObject.GetComponentInParent<PlayerController>();
+        blade = GameObject.Find("Combat").GetComponent<Combat>();
         for (int i = auras.GetLength(0); i > 0; i--)
         {
             auras[i-1] = transform.GetChild(i-1).GetComponent<ParticleSystem>();
@@ -110,7 +112,7 @@ public class Playeract : MonoBehaviour
 
     void Damage()  //doubles player damage
     {
-        //flesh.strength += flesh.strength * 2;
+        blade.damage += blade.damage * 2;
         Starttimer('D', 15f);
     }
 
