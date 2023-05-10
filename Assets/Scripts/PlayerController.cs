@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -31,6 +32,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Sword _playerCombat;
     public float speedMultiplyer;
 
+
     public bool sprinting = false;
     public bool canDoubleJump = false;
     private bool hasDoubleJumped = false;
@@ -38,6 +40,10 @@ public class PlayerController : MonoBehaviour
     public float bonusSpeed;
 
     private Quaternion direction;
+
+    public float playerHealth;
+    [SerializeField] private Image healtbar;
+    private float maxHealth;
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -79,15 +85,20 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        maxHealth = playerHealth;
+        UpdateHealthBar(maxHealth, playerHealth);
     }
 
     void Update()
     {
         direction = GameObject.Find("Cameraprop").GetComponent<Thecamera>().direction;
-        transform.rotation = direction; //Vector3.up * _look.x * sensitivity);
-        //_lookRotation += -_look.y * sensitivity;
-        //_lookRotation = Mathf.Clamp(_lookRotation, -90, 90);
-        //cameraHolder.transform.eulerAngles = new Vector3(_lookRotation, cameraHolder.transform.eulerAngles.y, cameraHolder.transform.eulerAngles.z);
+        transform.rotation = direction;
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Debug.Log("taking damage");
+            TakeDamage(2);
+        }
 
     }
 
@@ -129,6 +140,25 @@ public class PlayerController : MonoBehaviour
             rb.velocity -= Vector3.down * Physics.gravity.y * Time.fixedDeltaTime;
         }
 
+    }
+
+    public void TakeDamage(int damage)
+    {
+        Debug.Log("boss taking damage");
+        playerHealth -= damage;
+        UpdateHealthBar(maxHealth, playerHealth);
+
+        if (playerHealth <= 0)
+        {
+            Debug.Log("player dead");
+            //animator.SetBool("Living", false);
+        }
+    }
+
+    public void UpdateHealthBar(float maxHealth, float playerHealth)
+    {
+
+        healtbar.fillAmount = playerHealth / maxHealth;
     }
 
     public void Jump(InputAction.CallbackContext context)
