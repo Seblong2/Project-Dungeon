@@ -113,8 +113,8 @@ public class Thecamera : MonoBehaviour
                         afterRot = RCamRot;
                         break;
                     case 'B':
-                        afterSpot = RCamSpot;
-                        afterRot = RCamRot;
+                        afterSpot = BCamSpot;
+                        afterRot = BCamRot;
                         break;
             }
             Startswing(orient);

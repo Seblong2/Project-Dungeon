@@ -9,8 +9,7 @@ public class Playeract : MonoBehaviour
     public InputAction use;
     private PlayerController body;
     private Uiscript inv;
-    //private Playerfight flesh;
-    
+
     private ParticleSystem[] auras = new ParticleSystem[5];
     
     private float[] timers = new float[3];
@@ -22,7 +21,6 @@ public class Playeract : MonoBehaviour
         use.Enable();
         inv = GameObject.Find("Canvas").GetComponent<Uiscript>();
         body = gameObject.GetComponentInParent<PlayerController>();
-        //flesh = transform.GetChild(0).GetComponent<Playerfight>();
         for (int i = auras.GetLength(0); i > 0; i--)
         {
             auras[i-1] = transform.GetChild(i-1).GetComponent<ParticleSystem>();
@@ -120,11 +118,11 @@ public class Playeract : MonoBehaviour
     {
         if (size == 'S')
         {
-            //flesh.health += 3;
+            body.playerHealth += 3;
         }
         else if (size == 'L')
         {
-            //flesh.health += 9;
+            body.playerHealth += 9;
         }
     }
 

@@ -8,6 +8,6 @@ public class Killbox : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        other.GetComponent<PlayerController>();  //.death
+        other.GetComponent<PlayerController>().Death();
     }
 }

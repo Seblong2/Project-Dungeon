@@ -60,6 +60,7 @@ public class PlayerController : MonoBehaviour
     {
         characterController = new CharacterController();
        // _playerCombat = this.GetComponent<Sword>();
+       spawnpoint = new Vector3(304.74f, 24.5f, -99.5f);
     }
 
     private void OnEnable()
@@ -150,7 +151,14 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("player dead");
             //animator.SetBool("Living", false);
+            Death();
         }
+    }
+
+    public void Death()
+    {
+        playerHealth = maxHealth;
+        transform.position = spawnpoint;
     }
 
     public void UpdateHealthBar(float maxHealth, float playerHealth)
