@@ -39,6 +39,8 @@ public class Thecamera : MonoBehaviour
     private Quaternion TCamRot;
     private Vector3 RCamSpot;
     private Quaternion RCamRot;
+    private Vector3 BCamSpot;
+    private Quaternion BCamRot;
     private Vector3 CCamSpot;
     private Quaternion CCamRot;
     
@@ -57,6 +59,8 @@ public class Thecamera : MonoBehaviour
         TCamRot = new Quaternion(0.7f,0,0,0.7f);
         RCamSpot = new Vector3(-3.34f, 3.67f, -7.07f);  //Railway end camera
         RCamRot = new Quaternion(0.16f, 0.13f, 0.02f, 0.98f);
+        BCamSpot = new Vector3(-0.008f,3.85f,-5.56f);
+        BCamRot = new Quaternion(0.19f,0,0,0.98f);
         CCamSpot = new Vector3(-0.44f, 3.59f, -12.47f);   //Cutscene Camera
         CCamRot = new Quaternion(0.14f,0,0,0.99f);
         lockon = false;
@@ -90,25 +94,28 @@ public class Thecamera : MonoBehaviour
         if (transition == false && camerastate != nextcam)  //If the camera is changing state, or is already in the requested state, nothing happens.
         {
             camerastate = nextcam;   //switches the camera state to the new one, and begins the transition- giving the camera the new position and rotation values it needs
-            if (camerastate == 'F')  
+            switch (camerastate)
             {
-                afterSpot = FCamSpot;
-                afterRot = FCamRot;
-            }
-            if (camerastate == 'S')
-            {
-                afterSpot = SCamSpot;
-                afterRot = SCamRot;
-            }
-            if (camerastate == 'T')
-            {
-                afterSpot = TCamSpot;
-                afterRot = TCamRot;
-            }
-            if (camerastate == 'R')
-            {
-                afterSpot = RCamSpot;
-                afterRot = RCamRot;
+                    case 'F':
+                        afterSpot = FCamSpot;
+                        afterRot = FCamRot;
+                        break;
+                    case 'S':
+                        afterSpot = SCamSpot;
+                        afterRot = SCamRot;
+                        break;
+                    case 'T':
+                        afterSpot = TCamSpot;
+                        afterRot = TCamRot;
+                        break;
+                    case 'R':
+                        afterSpot = RCamSpot;
+                        afterRot = RCamRot;
+                        break;
+                    case 'B':
+                        afterSpot = BCamSpot;
+                        afterRot = BCamRot;
+                        break;
             }
             Startswing(orient);
         }

@@ -38,7 +38,7 @@ Transform:
   - {fileID: 2209620789105618232}
   - {fileID: 7561485387875562859}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &302679283020945234
 MeshFilter:
@@ -153,8 +153,8 @@ MonoBehaviour:
   prefab: {fileID: 9197841693827639484, guid: 58ed9353bdf09aa4bb9da8cbda5b4614, type: 3}
   scale: 76
   health: 3
-  basemat: {fileID: 2100000, guid: 7605c0c9e1e0a524cb747e0ef54502ad, type: 2}
-  painmat: {fileID: 0}
+  basemat: {fileID: 2100000, guid: c9fd1ba851f5cab4c869f12504588194, type: 2}
+  painmat: {fileID: 2100000, guid: 7605c0c9e1e0a524cb747e0ef54502ad, type: 2}
   destination: {x: 0, y: 0, z: 0}
   jump: 5
   cargo: {fileID: 0}

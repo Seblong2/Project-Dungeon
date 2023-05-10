@@ -15,14 +15,14 @@ public class PlayerController : MonoBehaviour
     private Vector2 _sprint;
     private Vector3 _jumpDirection;
 
-
+    private Vector3 spawnpoint;
 
     private float _lookRotation;
     private CharacterController characterController;
 
-    [SerializeField] private float speed;
+    public float speed;
     [SerializeField] private float sensitivity;
-    [SerializeField] private float _jumpForce;
+    public float _jumpForce;
     [SerializeField] private float _groundCheck;
     [SerializeField] private float _rayCheck;
 
@@ -48,8 +48,6 @@ public class PlayerController : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         _move = context.ReadValue<Vector2>();
-        Debug.Log("moving");
-
     }
 
 
@@ -62,6 +60,7 @@ public class PlayerController : MonoBehaviour
     {
         characterController = new CharacterController();
        // _playerCombat = this.GetComponent<Sword>();
+       spawnpoint = new Vector3(304.74f, 24.5f, -99.5f);
     }
 
     private void OnEnable()
@@ -151,7 +150,14 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("player dead");
             //animator.SetBool("Living", false);
+            Death();
         }
+    }
+
+    public void Death()
+    {
+        playerHealth = maxHealth;
+        transform.position = spawnpoint;
     }
 
     public void UpdateHealthBar(float maxHealth, float playerHealth)
@@ -165,7 +171,6 @@ public class PlayerController : MonoBehaviour
         if (Grounded())
         {
             rb.AddForce(transform.up * _jumpForce, ForceMode.Impulse);
-            Debug.Log("Called");
         }
         else if (!Grounded() && canDoubleJump && !hasDoubleJumped)
         {
@@ -207,14 +212,17 @@ public class PlayerController : MonoBehaviour
         Ray ray = new Ray(this.transform.position + Vector3.up * 0.25f, Vector3.down);
         if (Physics.Raycast(ray, out RaycastHit hit, 0.3f))
         {
-            Debug.Log("is grounded");
             hasDoubleJumped = false;
             return true;
         }
         else
         {
-            Debug.Log("False");
             return false;
         }
+    }
+
+    public void Setspawn(Vector3 spawn)
+    {
+        spawnpoint = spawn;
     }
 }
