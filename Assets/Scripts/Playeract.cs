@@ -7,12 +7,11 @@ using UnityEngine.InputSystem;
 public class Playeract : MonoBehaviour
 {
     public InputAction use;
-    //private Playermove body;
+    private PlayerController body;
     private Uiscript inv;
     //private Playerfight flesh;
     
-    private ParticleSystem glow;
-    private ParticleSystem[] auras = new ParticleSystem[4];
+    private ParticleSystem[] auras = new ParticleSystem[5];
     
     private float[] timers = new float[3];
     private char[] timerass = {'X', 'X', 'X'};
@@ -22,13 +21,11 @@ public class Playeract : MonoBehaviour
         use.performed += ctx => { Use(ctx); };
         use.Enable();
         inv = GameObject.Find("Canvas").GetComponent<Uiscript>();
-        //body = gameObject.GetComponent<Playermove>();
-        glow = gameObject.GetComponent<ParticleSystem>();
+        body = gameObject.GetComponentInParent<PlayerController>();
         //flesh = transform.GetChild(0).GetComponent<Playerfight>();
-        var aura_part = GameObject.Find("auras");
         for (int i = auras.GetLength(0); i > 0; i--)
         {
-            auras[i-1] = aura_part.transform.GetChild(i-1).GetComponent<ParticleSystem>();
+            auras[i-1] = transform.GetChild(i-1).GetComponent<ParticleSystem>();
         }
     }
 
@@ -69,15 +66,15 @@ public class Playeract : MonoBehaviour
                 break;
             case 3:
                 Heal('S');
-                glow.Play();
+                auras[boon].Play();
                 break;
             case 4:
                 Heal('L');
-                glow.Play();
+                auras[boon-1].Play();
                 break;
             case 5:
                 Sonic();
-                auras[boon-2].Play();
+                auras[boon-1].Play();
                 break;
         }
     }
@@ -103,13 +100,13 @@ public class Playeract : MonoBehaviour
 
     void Speed()  //doubles walking speed
     {
-        //body.speed = body.speed * 2;
+        body.speed = body.speed * 2;
         Starttimer('S', 15f);
     }
 
     void Jump()  //doubles jump strength
     {
-        //body.jstrength = body.jstrength * 2;
+        body._jumpForce = body._jumpForce * 2;
         Starttimer('J', 15f);
     }
 
@@ -133,7 +130,7 @@ public class Playeract : MonoBehaviour
 
     void Sonic()  //sextuples walking speed
     {
-        //body.speed = body.speed * 6;
+        body.speed = body.speed * 6;
         Starttimer('0', 1f);
     }
 
@@ -143,16 +140,16 @@ public class Playeract : MonoBehaviour
         switch (timerass[t])
         {
             case 'S':  //speed
-                //body.speed = body.speed / 2;
+                body.speed = body.speed / 2;
                 break;
             case 'J':  //jump
-                //body.jstrength = body.jstrength / 2;
+                body._jumpForce = body._jumpForce / 2;
                 break;
             case 'D':  //damage
                 //flesh.strength = flesh.strength / 2;
                 break;
             case 'O':  //supersonic
-                //body.speed = body.speed / 6;
+                body.speed = body.speed / 6;
                 break;
         }
     }

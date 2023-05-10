@@ -17,6 +17,8 @@ public class Boss : MonoBehaviour
     private float maxHealth;
     public bool active;
 
+    private int counter = 0;
+
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +31,13 @@ public class Boss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (counter > 1000)
+        {
+            Debug.Log("fdgthjkuilhbgvftjyuiolijuhygtdr");
+            Shoot();
+            counter = 0;
+        }
+        counter += 1;
         if (active)
         {
             if (Input.GetKeyDown(KeyCode.P))
@@ -43,7 +52,8 @@ public class Boss : MonoBehaviour
     private void Shoot()
     {
         animator.SetInteger("Attack", 2);
-        GameObject Sap = Instantiate(sap, transform.position, transform.rotation);
+        Vector3 shootspot = transform.position + new Vector3(0, 3, 1);
+        GameObject Sap = Instantiate(sap, shootspot, transform.rotation);
     }
 
     public void TakeDamage(int damage)

@@ -19,9 +19,9 @@ public class PlayerController : MonoBehaviour
     private float _lookRotation;
     private CharacterController characterController;
 
-    [SerializeField] private float speed;
+    public float speed;
     [SerializeField] private float sensitivity;
-    [SerializeField] private float _jumpForce;
+    public float _jumpForce;
     [SerializeField] private float _groundCheck;
     [SerializeField] private float _rayCheck;
 
