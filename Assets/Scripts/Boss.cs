@@ -114,7 +114,7 @@ public class Boss : MonoBehaviour
             nextFireTime = Time.time + fireRate;
 
             // Destroy the projectile after 2 seconds
-            Destroy(projectile, 2f);
+            Destroy(projectile, 4f);
         }
 
         // Check for collision with player
@@ -126,24 +126,36 @@ public class Boss : MonoBehaviour
 
     }
 
-
     private void Stomp()
     {
-        // Move towards player
-        Vector3 moveDirection = (player.transform.position - transform.position).normalized;
-        transform.position += moveDirection * moveSpeed * Time.deltaTime;
-
-        // Rotate towards player
-        Quaternion targetRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-
-        // Perform stomp attack
-        if (Vector3.Distance(transform.position, player.transform.position) <= stompRange)
+        // Cast a ray downwards to get the ground position
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity))
         {
-            animator.SetInteger("Attack", 1);
-            player.GetComponent<PlayerController>().TakeDamage(stompDamage);
+            // Calculate the move direction relative to the ground position
+            Vector3 groundPosition = hit.point;
+            Vector3 moveDirection = (player.transform.position - groundPosition).normalized;
+
+            // Move towards player with gravity
+            Rigidbody rb = GetComponent<Rigidbody>();
+            Vector3 forceDirection = moveDirection * moveSpeed + Physics.gravity;
+            rb.AddForce(forceDirection * Time.deltaTime, ForceMode.VelocityChange);
+
+            // Rotate towards player
+            Quaternion targetRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+            // Perform stomp attack
+            if (Vector3.Distance(transform.position, player.transform.position) <= stompRange)
+            {
+                animator.SetInteger("Attack", 1);
+                player.GetComponent<PlayerController>().TakeDamage(stompDamage);
+            }
         }
     }
+
+
+
 
     public void TakeDamage(int damage)
     {
