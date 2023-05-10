@@ -95,13 +95,7 @@ public class Boss : MonoBehaviour
     private void Fire()
     {
 
-        // Move towards player
-         Vector3 moveDirection = (player.transform.position - transform.position).normalized;
-        transform.position += moveDirection * moveSpeed * Time.deltaTime;
-
-        // Rotate towards player
-        Quaternion targetRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        Walk();
         if (Time.time >= nextFireTime)
         {
             // Calculate the direction of the projectile towards the player
@@ -129,13 +123,7 @@ public class Boss : MonoBehaviour
 
     private void Stomp()
     {
-        // Move towards player
-        Vector3 moveDirection = (player.transform.position - transform.position).normalized;
-        transform.position += moveDirection * moveSpeed * Time.deltaTime;
-
-        // Rotate towards player
-        Quaternion targetRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        Walk();
 
         // Perform stomp attack
         if (Vector3.Distance(transform.position, player.transform.position) <= stompRange)
@@ -143,6 +131,17 @@ public class Boss : MonoBehaviour
             animator.SetInteger("Attack", 1);
             player.GetComponent<PlayerController>().TakeDamage(stompDamage);
         }
+    }
+
+    private void Walk()
+    {
+        // Move towards player
+        Vector3 moveDirection = (player.transform.position - transform.position).normalized;
+        transform.position += moveDirection * moveSpeed * Time.deltaTime;
+        
+        // Rotate towards player
+        Quaternion targetRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 
     public void TakeDamage(int damage)
