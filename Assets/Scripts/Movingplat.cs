@@ -105,6 +105,10 @@ public class Movingplat : MonoBehaviour
         if (Mathf.Abs(fb) > 1)
         {
             from = to;
+            if (from == end)
+            {
+                begun = false;
+            }
             if (fb > 0)
             {
                 stopnum += 1;
@@ -112,8 +116,6 @@ public class Movingplat : MonoBehaviour
                 if (stopnum >= stopoffs.GetLength(0))
                 {
                     to = end;
-                    stopnum = stopoffs.GetLength(0) - 1;
-                    fb = -0.03f;
                 }
                 else
                 { to = stopoffs[stopnum]; }

@@ -7,6 +7,9 @@ public class Checkpoint : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        other.GetComponent<PlayerController>().Setspawn(transform.position);
+        if (other.CompareTag("Player"))
+        {
+            other.GetComponent<PlayerController>().Setspawn(transform.position);
+        }
     }
 }
