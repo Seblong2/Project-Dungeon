@@ -69,7 +69,7 @@ public class Movingplat : MonoBehaviour
             { transform.position = Vector3.Lerp(from, to, fb); }
             fb += speed;
         }
-        else if (fb < 0)
+        /*else if (fb < 0)
         {
             if (fb > -1)
             { transform.position = Vector3.Lerp(to, from, Mathf.Abs(fb)); }
@@ -82,7 +82,7 @@ public class Movingplat : MonoBehaviour
             { fb = -0.03f; }
             else if (fb < 0)
             { fb = 0.03f; }
-        }
+        }*/
     }
 
     
@@ -95,12 +95,12 @@ public class Movingplat : MonoBehaviour
             { transform.position = Vector3.Lerp(from, to, fb); }
             fb += speed;
         }
-        else if (fb < 0)
+        /*else if (fb < 0)
         {
             if (fb > -stopoffs.GetLength(0))
             { transform.position = Vector3.Lerp(from, to, Mathf.Abs(fb)); }
             fb -= speed;
-        }
+        }*/
 
         if (Mathf.Abs(fb) > 1)
         {
@@ -118,7 +118,7 @@ public class Movingplat : MonoBehaviour
                 else
                 { to = stopoffs[stopnum]; }
             }
-            else if (fb < 0)
+            /*else if (fb < 0)
             {
                 stopnum -= 1;
                 fb = 0.03f;
@@ -131,7 +131,7 @@ public class Movingplat : MonoBehaviour
                 }
                 else
                 { to = stopoffs[stopnum]; }
-            }
+            }*/
         }
     }
 }

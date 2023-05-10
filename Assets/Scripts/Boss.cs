@@ -15,7 +15,7 @@ public class Boss : MonoBehaviour
     
     public float enemyHealth;
     private float maxHealth;
-    private bool active;
+    public bool active;
 
 
     // Start is called before the first frame update
