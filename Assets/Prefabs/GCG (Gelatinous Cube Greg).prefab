@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1270163249354921458}
   - component: {fileID: 895411340665804079}
   - component: {fileID: 4636631949824007964}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GCG (Gelatinous Cube Greg)
   m_TagString: Foe
   m_Icon: {fileID: 0}
@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: 2209620789105618232}
   - component: {fileID: 4523335823932722429}
   - component: {fileID: 9009119812590126916}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Seeing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -278,7 +278,7 @@ GameObject:
   - component: {fileID: 7561485387875562859}
   - component: {fileID: 3216351468333438155}
   - component: {fileID: 4140188774610190715}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Hurting
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -37,7 +37,7 @@ public class Sword : MonoBehaviour
 
         foreach (Collider enemy in enemiesHit)
         {
-            enemy.GetComponent<Enemy>().TakeDamage(damage);
+            enemy.GetComponent<Gelcube>().Pain();
             Debug.Log("Hit enemy");
         }
 
