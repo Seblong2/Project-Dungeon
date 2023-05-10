@@ -16,17 +16,7 @@ public class Sword : MonoBehaviour
     public float weaponRange;
     public LayerMask enemyLayer;
     //[SerializeField] private Enemy enemy;
-
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    
 
     public void Attack()
     {
@@ -37,12 +27,9 @@ public class Sword : MonoBehaviour
 
         foreach (Collider enemy in enemiesHit)
         {
-            enemy.GetComponent<Gelcube>().Pain();
+            enemy.GetComponent<Gelcube>().Pain(damage);
             Debug.Log("Hit enemy");
         }
-
-
-
     }
 
     private void OnDrawGizmosSelected()

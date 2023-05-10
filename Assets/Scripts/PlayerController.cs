@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     public float rateOfAttack;
     private float _resetAttack = 0;
     // [SerializeField] private Weapon _playerCombat;
-    [SerializeField] private Sword _playerCombat;
+    [SerializeField] private Combat _playerCombat;
     public float speedMultiplyer;
 
 

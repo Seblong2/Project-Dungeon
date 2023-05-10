@@ -90,12 +90,12 @@ public class Gelcube : MonoBehaviour
         }
     }
 
-    public void Pain()
+    public void Pain(int damage)
     {
         gameObject.GetComponent<MeshRenderer>().material = painmat;
         if (iframes <= 0)
         {
-            health -= 1;
+            health -= damage;
             if (health <= 0)
             {
                 Die();
