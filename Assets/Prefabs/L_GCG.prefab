@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2119901782499264134}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.05, y: 0, z: 4.050001}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -52,8 +52,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.5, y: 1.5, z: 1.5}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.27778712, y: 0.23761587, z: 0.25724697}
+  m_Center: {x: -0.0015758037, y: -0.0005979538, z: -0.00043973923}
 --- !u!114 &2668381613665912355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,8 +282,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 950cf3491fce9fa48882757e0cda26ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 7073817834245323136}
-  scale: 76
+  prefab: {fileID: 0}
+  scale: 83
   health: 1
   basemat: {fileID: 2100000, guid: c9fd1ba851f5cab4c869f12504588194, type: 2}
   painmat: {fileID: 2100000, guid: 7605c0c9e1e0a524cb747e0ef54502ad, type: 2}

@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
     public float playerHealth;
     [SerializeField] private Image healtbar;
     private float maxHealth;
+    private float iframes;
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -99,6 +100,14 @@ public class PlayerController : MonoBehaviour
             TakeDamage(2);
         }
 
+        if (iframes > 0)
+        {
+            iframes -= Time.deltaTime;
+            if (iframes <= 0)
+            {
+                gameObject.GetComponentInChildren<Knightskin>().Fade(false);
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -143,14 +152,18 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        playerHealth -= damage;
-        UpdateHealthBar(maxHealth, playerHealth);
-
-        if (playerHealth <= 0)
+        if (iframes <= 0)
         {
-            Debug.Log("player dead");
-            //animator.SetBool("Living", false);
-            Death();
+            playerHealth -= damage;
+            UpdateHealthBar(maxHealth, playerHealth);
+            if (playerHealth <= 0)
+            {
+                Debug.Log("player dead");
+                //animator.SetBool("Living", false);
+                Death();
+            }
+            iframes = 1.5f;
+            gameObject.GetComponentInChildren<Knightskin>().Fade(false);
         }
     }
 

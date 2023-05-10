@@ -17,6 +17,7 @@ public class Cubehit : MonoBehaviour
         {
             other.GetComponentInChildren<PlayerController>().TakeDamage(2);
             transform.parent.GetComponent<Gelcube>().Land();
+            painzone.enabled = false;
         }
     }
 }
