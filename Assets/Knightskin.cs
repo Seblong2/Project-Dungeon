@@ -9,6 +9,7 @@ public class Knightskin : MonoBehaviour
 
     public void Fade(bool transparent)
     {
+        Debug.Log("owwww");
         if (transparent)
         {
             gameObject.GetComponent<SkinnedMeshRenderer>().material = iskin;

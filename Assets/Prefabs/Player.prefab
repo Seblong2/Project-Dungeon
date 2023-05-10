@@ -1015,7 +1015,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4804107357478232486}
   - component: {fileID: 7267575032919025524}
-  - component: {fileID: 3311056723110050771}
   m_Layer: 0
   m_Name: Mesh-Knight
   m_TagString: Untagged
@@ -1143,20 +1142,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0017329156, y: 1.291841, z: 0.079499885}
     m_Extent: {x: 0.5232842, y: 1.3108559, z: 0.37137723}
   m_DirtyAABB: 0
---- !u!114 &3311056723110050771
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4754880356134552545}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e413d5eaefc0de43b221549282c2f37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skin: {fileID: 2100000, guid: cc40f1b9a8fbd6642ad5b1f7b08366e7, type: 2}
-  iskin: {fileID: 2100000, guid: 9567224725d419c42a8462c97d81d93f, type: 2}
 --- !u!1 &4949663592018696074
 GameObject:
   m_ObjectHideFlags: 0
