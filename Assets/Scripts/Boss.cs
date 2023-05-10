@@ -20,6 +20,7 @@ public class Boss : MonoBehaviour
     public float sapExplosionRaidus;
     public float stompRange;
     public float moveSpeed;
+    public float rotationSpeed;
 
     public enum BossState
     {
@@ -91,6 +92,62 @@ public class Boss : MonoBehaviour
 
     private void Fire()
     {
+        // Move towards player
+        Vector3 moveDirection = (player.transform.position - transform.position).normalized;
+        transform.position += moveDirection * moveSpeed * Time.deltaTime;
+
+        // Rotate towards player
+        Quaternion targetRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+        // Increase fire rate and move speed at low health
+        if (currentHealth <= maxHealth * moveSpeedIncreaseThreshold)
+        {
+            animator.speed = 2f;
+        }
+
+        if (currentHealth <= maxHealth * fireRateIncreaseThreshold)
+        {
+            fireRate = 0.2f;
+        }
+
+        // Fire a projectile
+        if (Time.time >= nextFireTime)
+        {
+            //animator.SetInteger("Attack", 2);
+            GameObject projectile = Instantiate(sap, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
+            nextFireTime = Time.time + fireRate;
+
+            // Check if the projectile hit the player
+            if (Vector3.Distance(sap.transform.position, player.transform.position) <= sapExplosionRaidus)
+            {
+                player.GetComponent<PlayerController>().TakeDamage(rangeDamage);
+            }
+        }
+    }
+
+    private void Stomp()
+    {
+        // Move towards player
+        Vector3 moveDirection = (player.transform.position - transform.position).normalized;
+        transform.position += moveDirection * moveSpeed * Time.deltaTime;
+
+        // Rotate towards player
+        Quaternion targetRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+        // Perform stomp attack
+        if (Vector3.Distance(transform.position, player.transform.position) <= stompRange)
+        {
+            animator.SetInteger("Attack", 1);
+            player.GetComponent<PlayerController>().TakeDamage(stompDamage);
+        }
+    }
+
+
+    /*
+    private void Fire()
+    {
         transform.position = Vector3.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
 
         // Increase fire rate and move speed at low health
@@ -130,6 +187,7 @@ public class Boss : MonoBehaviour
         }
     }
 
+    */
 
     public void TakeDamage(int damage)
     {

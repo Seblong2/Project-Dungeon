@@ -1867,11 +1867,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67a261d7a54d64b189c38f995d15a032, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 638609498}
   animator: {fileID: 865367190}
   sap: {fileID: 7180559025270154081, guid: 1190bb10f980e9a41a72b9e3a0cd4f63, type: 3}
-  isActive: 0
+  maxHealth: 100
+  currentHealth: 0
+  active: 0
   bossUI: {fileID: 1572493655}
+  player: {fileID: 0}
   stompDamage: 4
   rangeDamage: 6
   nextFireTime: 0
@@ -1879,6 +1882,7 @@ MonoBehaviour:
   sapExplosionRaidus: 2
   stompRange: 4
   moveSpeed: 3
+  rotationSpeed: 30
   fireRateIncreaseThreshold: 2
   moveSpeedIncreaseThreshold: 1
   currentState: 0
@@ -3995,10 +3999,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1bebf09eef899d44905b3b756cb7311, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextcam: 66
+  nextcam: 70
   orient: {x: 0, y: 0, z: 0}
   focalpoint: {x: 0, y: 0, z: 0}
-  focalobject: {fileID: 602539794}
+  focalobject: {fileID: 0}
 --- !u!1 &2049682890
 GameObject:
   m_ObjectHideFlags: 0
@@ -4401,7 +4405,7 @@ PrefabInstance:
       objectReference: {fileID: 408964815}
     - target: {fileID: 642186490794384504, guid: ea4230f77d2c646858669bd508f48cbe, type: 3}
       propertyPath: playerHealth
-      value: 40
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 2496147203053615415, guid: ea4230f77d2c646858669bd508f48cbe, type: 3}
       propertyPath: m_LocalPosition.z
