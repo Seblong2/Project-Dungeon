@@ -16,6 +16,7 @@ public class Boss : MonoBehaviour
     public float enemyHealth;
     private float maxHealth;
     public bool active;
+    public GameObject bossUI;
 
 
     // Start is called before the first frame update
@@ -23,6 +24,7 @@ public class Boss : MonoBehaviour
     {
         active = false;
         maxHealth = enemyHealth;
+        bossUI.SetActive(false);
         UpdateHealthBar(maxHealth, enemyHealth);
     }
 
@@ -31,9 +33,10 @@ public class Boss : MonoBehaviour
     {
         if (active)
         {
+            bossUI.SetActive(true);
             if (Input.GetKeyDown(KeyCode.P))
             {
-
+                Debug.Log("taking damage");
                 TakeDamage(2);
             }
             healtbar.transform.rotation = Quaternion.LookRotation(transform.position - cam.transform.position);

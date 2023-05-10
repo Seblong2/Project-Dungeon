@@ -104,7 +104,7 @@ Transform:
   - {fileID: 4419798516850183045}
   - {fileID: 3934756857861116824}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &3960000276041980010
 Animator:
@@ -300,6 +300,8 @@ MonoBehaviour:
   canDoubleJump: 0
   speedBoost: 0
   bonusSpeed: 1
+  playerHealth: 10
+  healtbar: {fileID: 0}
 --- !u!1 &677442028116643590
 GameObject:
   m_ObjectHideFlags: 0
