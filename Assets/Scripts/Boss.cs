@@ -20,6 +20,9 @@ public class Boss : MonoBehaviour
     public float sapExplosionRaidus;
     public float stompRange;
     public float moveSpeed;
+    public float rotationSpeed;
+    public float projectileSpeed;
+    private GameObject projectile;
 
     public enum BossState
     {
@@ -91,45 +94,56 @@ public class Boss : MonoBehaviour
 
     private void Fire()
     {
-        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
 
-        // Increase fire rate and move speed at low health
-        if (currentHealth <= maxHealth * moveSpeedIncreaseThreshold)
-        {
-            animator.speed = 2f;
-        }
+        // Move towards player
+         Vector3 moveDirection = (player.transform.position - transform.position).normalized;
+        transform.position += moveDirection * moveSpeed * Time.deltaTime;
 
-        if (currentHealth <= maxHealth * fireRateIncreaseThreshold)
-        {
-            fireRate = 0.2f;
-        }
-
-        // Fire a projectile
+        // Rotate towards player
+        Quaternion targetRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         if (Time.time >= nextFireTime)
         {
-           
-            GameObject projectile = Instantiate(sap, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
+            // Calculate the direction of the projectile towards the player
+            Vector3 projectileDirection = (player.transform.position - projectileSpawnPoint.position).normalized;
+
+            projectile = Instantiate(sap, projectileSpawnPoint.position, Quaternion.LookRotation(projectileDirection));
+            Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
+            projectileRb.velocity = projectileDirection * projectileSpeed;
+
             nextFireTime = Time.time + fireRate;
 
-            // Check if the projectile hit the player
-            if (Vector3.Distance(sap.transform.position, player.transform.position) <= sapExplosionRaidus)
-            {
-                player.GetComponent<PlayerController>().TakeDamage(rangeDamage);
-            }
+            // Destroy the projectile after 2 seconds
+            Destroy(projectile, 2f);
         }
+
+        // Check for collision with player
+        if (projectile != null && Vector3.Distance(projectile.transform.position, player.transform.position) <= sapExplosionRaidus)
+        {
+            player.GetComponent<PlayerController>().TakeDamage(rangeDamage);
+            Destroy(projectile);
+        }
+
     }
 
 
     private void Stomp()
     {
-        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+        // Move towards player
+        Vector3 moveDirection = (player.transform.position - transform.position).normalized;
+        transform.position += moveDirection * moveSpeed * Time.deltaTime;
+
+        // Rotate towards player
+        Quaternion targetRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+        // Perform stomp attack
         if (Vector3.Distance(transform.position, player.transform.position) <= stompRange)
         {
             animator.SetInteger("Attack", 1);
             player.GetComponent<PlayerController>().TakeDamage(stompDamage);
         }
     }
-
 
     public void TakeDamage(int damage)
     {
@@ -140,6 +154,7 @@ public class Boss : MonoBehaviour
         {
             animator.SetBool("Living", false);
             active = false;
+            Destroy(gameObject);
         }
     }
 
@@ -149,77 +164,5 @@ public class Boss : MonoBehaviour
     }
 }
 
-//older version down below 
 
-/*
-public class Boss : MonoBehaviour
-{
-
-    [SerializeField] private Image healtbar;
-  //  [SerializeField] private Camera cam;
-
-    public Animator animator;
-
-    public GameObject sap;
-    
-    public float enemyHealth;
-    private float maxHealth;
-    public bool active;
-    public GameObject bossUI;
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        active = false;
-        maxHealth = enemyHealth;
-        bossUI.SetActive(false);
-        UpdateHealthBar(maxHealth, enemyHealth);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (active)
-        {
-            bossUI.SetActive(true);
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-                Debug.Log("taking damage");
-                TakeDamage(2);
-            }
-//            healtbar.transform.rotation = Quaternion.LookRotation(transform.position - cam.transform.position);
-        }
-    }
-
-    private void Shoot()
-    {
-        animator.SetInteger("Attack", 2);
-        Vector3 shootspot = transform.position + new Vector3(0, 3, 1);
-        GameObject Sap = Instantiate(sap, shootspot, transform.rotation);
-    }
-
-    private void Kick()
-    {
-        animator.SetInteger("Attack", 1);
-    }
-
-    public void TakeDamage(int damage)
-    {
-        Debug.Log("boss taking damage");
-        enemyHealth -= damage;
-        UpdateHealthBar(maxHealth, enemyHealth);
-
-        if (enemyHealth <= 0)
-        {
-            animator.SetBool("Living", false);
-        }
-    }
-
-    public void UpdateHealthBar(float maxHealth, float enemyHealth)
-    {
-
-        healtbar.fillAmount = enemyHealth / maxHealth;
-    }
-}
-*/
+  
