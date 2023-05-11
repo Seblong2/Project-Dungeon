@@ -94,27 +94,48 @@ public class Boss : MonoBehaviour
 
     private void Fire()
     {
+
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity))
+        {
+            // Calculate the move direction relative to the ground position
+            Vector3 groundPosition = hit.point;
+            Vector3 moveDirection = (player.transform.position - groundPosition).normalized;
+
+            // Move towards player with gravity
+            Rigidbody rb = GetComponent<Rigidbody>();
+            Vector3 forceDirection = moveDirection * moveSpeed + Physics.gravity;
+            rb.AddForce(forceDirection * Time.deltaTime, ForceMode.VelocityChange);
+
+            // Rotate towards player
+            Quaternion targetRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+        }
+
         if (Time.time >= nextFireTime)
-        {
-            // Calculate the direction of the projectile towards the player
-            Vector3 projectileDirection = (player.transform.position - projectileSpawnPoint.position).normalized;
+            {
+                // Calculate the direction of the projectile towards the player
+                Vector3 projectileDirection = (player.transform.position - projectileSpawnPoint.position).normalized;
 
-            projectile = Instantiate(sap, projectileSpawnPoint.position, Quaternion.LookRotation(projectileDirection));
-            Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
-            projectileRb.velocity = projectileDirection * projectileSpeed;
+                projectile = Instantiate(sap, projectileSpawnPoint.position, Quaternion.LookRotation(projectileDirection));
+                Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
+                projectileRb.velocity = projectileDirection * projectileSpeed;
 
-            nextFireTime = Time.time + fireRate;
+                nextFireTime = Time.time + fireRate;
 
-            // Destroy the projectile after 2 seconds
-            Destroy(projectile, 4f);
-        }
+                // Destroy the projectile after 2 seconds
+                Destroy(projectile, 4f);
+            }
 
-        // Check for collision with player
-        if (projectile != null && Vector3.Distance(projectile.transform.position, player.transform.position) <= sapExplosionRaidus)
-        {
-            player.GetComponent<PlayerController>().TakeDamage(rangeDamage);
-            Destroy(projectile);
-        }
+            // Check for collision with player
+            if (projectile != null && Vector3.Distance(projectile.transform.position, player.transform.position) <= sapExplosionRaidus)
+            {
+                player.GetComponent<PlayerController>().TakeDamage(rangeDamage);
+                Destroy(projectile);
+            }
+
+       
 
     }
 
