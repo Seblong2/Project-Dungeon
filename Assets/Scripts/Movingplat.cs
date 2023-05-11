@@ -136,4 +136,14 @@ public class Movingplat : MonoBehaviour
             }*/
         }
     }
+
+    public void Reset()
+    {
+        from = start;
+        transform.position = start;
+        to = stopoffs[0];
+        stopnum = 0;
+        fb = 0.03f;
+        begun = false;
+    }
 }
