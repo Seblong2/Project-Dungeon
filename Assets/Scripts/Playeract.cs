@@ -126,6 +126,7 @@ public class Playeract : MonoBehaviour
         {
             body.playerHealth += 9;
         }
+        body.UpdateHealthBar();
     }
 
     void Sonic()  //sextuples walking speed

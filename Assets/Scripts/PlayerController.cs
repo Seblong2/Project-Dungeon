@@ -86,7 +86,7 @@ public class PlayerController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         maxHealth = playerHealth;
-        UpdateHealthBar(maxHealth, playerHealth);
+        UpdateHealthBar();
     }
 
     void Update()
@@ -149,7 +149,7 @@ public class PlayerController : MonoBehaviour
         if (iframes <= 0)
         {
             playerHealth -= damage;
-            UpdateHealthBar(maxHealth, playerHealth);
+            UpdateHealthBar();
             if (playerHealth <= 0)
             {
                 Debug.Log("player dead");
@@ -167,9 +167,8 @@ public class PlayerController : MonoBehaviour
         transform.position = spawnpoint;
     }
 
-    public void UpdateHealthBar(float maxHealth, float playerHealth)
+    public void UpdateHealthBar()
     {
-
         healtbar.fillAmount = playerHealth / maxHealth;
     }
 

@@ -5839,7 +5839,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weaponAnimation: {fileID: 0}
-  damage: 0
+  damage: 1
   _swordSlash: {fileID: 0}
   _audioSource: {fileID: 5161125609370445042}
 --- !u!82 &5161125609370445042
